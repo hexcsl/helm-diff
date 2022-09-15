@@ -33,7 +33,7 @@ install/helm3: build
 lint:
 	scripts/update-gofmt.sh
 	scripts/verify-gofmt.sh
-	# scripts/verify-golint.sh
+	scripts/verify-golint.sh
 	scripts/verify-govet.sh
 
 .PHONY: build
