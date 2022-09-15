@@ -10,7 +10,7 @@ if [ ! -f bin/github-release ]; then
   chmod +x bin/github-release
 fi
 
-user=databus23
+user=hexcsl
 repo=helm-diff
 tag=$1
 commit=$2
