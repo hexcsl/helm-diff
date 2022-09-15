@@ -84,7 +84,6 @@ func getChart(release, namespace string) (string, error) {
 
 func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
 	flags := []string{}
-
 	if d.Insecure {
 		flags = append(flags, "--insecure-skip-tls-verify")
 	}
