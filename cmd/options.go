@@ -13,6 +13,9 @@ func AddDiffOptions(f *pflag.FlagSet, o *diff.Options) {
 	f.IntVarP(&o.OutputContext, "context", "C", -1, "output NUM lines of context around changes")
 	f.StringVar(&o.OutputFormat, "output", "diff", "Possible values: diff, simple, template. When set to \"template\", use the env var HELM_DIFF_TPL to specify the template.")
 	f.BoolVar(&o.StripTrailingCR, "strip-trailing-cr", false, "strip trailing carriage return on input")
+	f.BoolVar(&o.Insecure, "insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
+	f.StringVar(&o.Username, "username", "", "chart repository username where to locate the requested chart")
+	f.StringVar(&o.Password, "password", "", "chart repository password where to locate the requested chart")
 	f.Float32VarP(&o.FindRenames, "find-renames", "D", 0, "Enable rename detection if set to any value greater than 0. If specified, the value denotes the maximum fraction of changed content as lines added + removed compared to total lines in a diff for considering it a rename. Only objects of the same Kind are attempted to be matched")
 }
 
