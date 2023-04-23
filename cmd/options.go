@@ -11,7 +11,7 @@ func AddDiffOptions(f *pflag.FlagSet, o *diff.Options) {
 	f.BoolVar(&o.ShowSecrets, "show-secrets", false, "do not redact secret values in the output")
 	f.StringArrayVar(&o.SuppressedKinds, "suppress", []string{}, "allows suppression of the values listed in the diff output")
 	f.IntVarP(&o.OutputContext, "context", "C", -1, "output NUM lines of context around changes")
-	f.StringVar(&o.OutputFormat, "output", "diff", "Possible values: diff, simple, template. When set to \"template\", use the env var HELM_DIFF_TPL to specify the template.")
+	f.StringVar(&o.OutputFormat, "output", "diff", "Possible values: diff, simple, template, dyff. When set to \"template\", use the env var HELM_DIFF_TPL to specify the template.")
 	f.BoolVar(&o.StripTrailingCR, "strip-trailing-cr", false, "strip trailing carriage return on input")
 	f.BoolVar(&o.Insecure, "insecure-skip-tls-verify", false, "skip tls certificate checks for the chart download")
 	f.StringVar(&o.Username, "username", "", "chart repository username where to locate the requested chart")
