@@ -40,7 +40,6 @@ func compatibleHelm3Version() error {
 		return fmt.Errorf("helm diff upgrade requires at least helm version %s", minHelmVersion.String())
 	}
 	return nil
-
 }
 func getRelease(release, namespace string) ([]byte, error) {
 	args := []string{"get", "manifest", release}
@@ -126,7 +125,9 @@ func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		defer os.Remove(tmpfile.Name())
+		defer func() {
+			_ = os.Remove(tmpfile.Name())
+		}()
 		if err := d.writeExistingValues(tmpfile); err != nil {
 			return nil, err
 		}
@@ -149,10 +150,12 @@ func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
 			if err != nil {
 				return nil, err
 			}
-			defer os.Remove(tmpfile.Name())
+			defer func() {
+				_ = os.Remove(tmpfile.Name())
+			}()
 
 			if _, err := tmpfile.Write(bytes); err != nil {
-				tmpfile.Close()
+				_ = tmpfile.Close()
 				return nil, err
 			}
 
@@ -229,7 +232,9 @@ func (d *diffCmd) template(isUpgrade bool) ([]byte, error) {
 func (d *diffCmd) writeExistingValues(f *os.File) error {
 	cmd := exec.Command(os.Getenv("HELM_BIN"), "get", "values", d.release, "--all", "--output", "yaml")
 	debugPrint("Executing %s", strings.Join(cmd.Args, " "))
-	defer f.Close()
+	defer func() {
+		_ = f.Close()
+	}()
 	cmd.Stdout = f
 	return cmd.Run()
 }
