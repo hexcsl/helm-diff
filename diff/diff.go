@@ -23,9 +23,6 @@ type Options struct {
 	OutputFormat    string
 	OutputContext   int
 	StripTrailingCR bool
-	Insecure        bool
-	Username        string
-	Password        string
 	ShowSecrets     bool
 	SuppressedKinds []string
 	FindRenames     float32
